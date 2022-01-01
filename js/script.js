@@ -30,19 +30,23 @@ const checkValidForm = (elements) => {
     if(submitButton !== undefined)
         submitButton.disabled = disable
     if(!disable){
-        const firstName = document.getElementById('regForm-firstName');
-        const lastName = document.getElementById('regForm-lastName');
-        const email = document.getElementById('regForm-email');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const email = document.getElementById('email');
         const password = document.getElementById('regForm-password');
-        const confirmPassword = document.getElementById('regForm-confirm-password');
-        const dateOfBirth = document.getElementById('regForm-date-of-birth');
+        const confirmPassword = document.getElementById('confirm-password');
+        const dateOfBirth = document.getElementById('birthDate');
+        const address = document.getElementById('address');
+        const postalCode = document.getElementById('postalCode');
         let customer = {
             firstName : firstName,
             lastName : lastName,
             email : email,
             password : password,
             confirmPassword : confirmPassword,
-            dateOfBirth : dateOfBirth
+            dateOfBirth : dateOfBirth,
+            address : address,
+            postalCode : postalCode
         }
         onSubmit(customer);
     }
@@ -134,29 +138,28 @@ const validateAge = (element) => {
 function setEventListeners  ()  {
     forms.forEach(element => {
         switch(element.id) {
-            case "regForm-firstName":
+            case "firstName":
                 validateLength(element);
                 break;
-            case "regForm-lastName":
+            case "lastName":
                 validateLength(element);
                 break;
-            case "regForm-email" :
+            case "email" :
                 validateEmail(element);
                 break;
             case "regForm-password":
                 validatePassword(element);
                 break;
-            case "regForm-confirm-password":
+            case "confirm-password":
                 validateConfirmPassword(element);
-                //checkValidForm(forms)
                 break;
-            case "regForm-birthDate":
+            case "birthDate":
                 validateAge(element);
                 break;
-            case "regForm-address":
+            case "address":
                 validateLength(element);
                 break;
-            case "regForm-postalCode":
+            case "postalCode":
                 validatePostalCode(element);
                 break;
         }
