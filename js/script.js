@@ -17,33 +17,6 @@ const validConfirmPassword = (password, confirmPassword ) =>{
 const validPostalCode = (value, RequiredLength=5) => {
     return value.length === RequiredLength ? true : false;
 }
-const isOver18 = (birthday) => {
-    /*let dob = new Date(birthday.value);
-    let bdo_day = dob.getDate();
-    let bdo_month = dob.getMonth();
-    let bdo_year = dob.getFullYear();
-
-    let today_date = new Date();
-    let today_day = today_date.getDate();
-    let today_month = today_date.getMonth();
-    let today_year = today_date.getFullYear();
-
-    let calculated_age = 0;
-    if( today_month > bdo_month )
-        calculated_age = today_year -  bdo_year;
-    else if(today_month === bdo_month){
-        if(today_day >= bdo_day )
-            calculated_age = today_year - bdo_year;
-        else
-            calculated_age = today_year - bdo_year -1;
-    }
-    else
-        calculated_age = today_year - bdo_year -1;
-    return  (calculated_age >=18 && calculated_age < 110 ) ? true : false;*/
-
-    return  new Date(birthday.value).getFullYear() + 18 < new Date().getFullYear() ? false : true;
-
-}
 const checkValidForm = (elements) => {
     let disable = false
     let errors = document.querySelectorAll('.is-invalid')
@@ -145,29 +118,8 @@ const validateConfirmPassword = (element) => {
 }
 const validateAge = (element) => {
     element.addEventListener("keyup", function (e) {
-        let dob = new Date(element.value);
-        let bdo_day = dob.getDate();
-        let bdo_month = dob.getMonth();
-        let bdo_year = dob.getFullYear();
-
-        let today_date = new Date();
-        let today_day = today_date.getDate();
-        let today_month = today_date.getMonth();
-        let today_year = today_date.getFullYear();
-
-        let calculated_age = 0;
-        if( today_month > bdo_month )
-            calculated_age = today_year -  bdo_year;
-        else if(today_month === bdo_month){
-            if(today_day >= bdo_day )
-                calculated_age = today_year - bdo_year;
-            else
-                calculated_age = today_year - bdo_year -1;
-        }
-        else
-            calculated_age = today_year - bdo_year -1;
-
-         let isOver=dob.getFullYear() + 18 < today_date.getFullYear();
+        let today = new Date();
+        let isOver= new Date(element.value) < new Date(today.getFullYear()-18, today.getMonth(),today.getDate(),today.getHours(), today.getMinutes())
         if (!isOver) {
             e.target.classList.add("is-invalid");
             document.getElementById(`${e.target.id}-error`).style.display = "block"
